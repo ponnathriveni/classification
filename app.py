@@ -4,8 +4,8 @@ from pydantic import BaseModel
 import numpy as np
 import pickle
 import joblib
-
-app = FastAPI()
+import main
+main = FastAPI()
 
 model = joblib.load(open("model.pkl", "rb"))
 
@@ -20,7 +20,7 @@ class InputData(BaseModel):
     Affects_Academic_Performance: str
     Sleep_Hours_Per_Night: float
     Mental_Health_Score: float
-@app.post("/predict")
+@main.post("/predict")
 def predict(data: InputData):
 
     # Encode
